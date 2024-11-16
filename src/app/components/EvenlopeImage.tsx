@@ -5,7 +5,7 @@ export default function EvenlopeImage() {
     <div className="relative flex items-center justify-center">
       <div className="animate-float">
         <Image
-          src="/evenlope.jpeg"
+          src="/content_images/evenlope.jpeg"
           width={480}
           height={320}
           alt="Pixel art letter"
