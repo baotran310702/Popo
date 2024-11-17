@@ -211,8 +211,8 @@ const BOT_MESSAGES = {
     "",
     "",
     "",
-    "Có người vì đau lòng mà rời đi....",
-    "Có người sau khi người ta rời đi rồi mới cảm thấy đau lòng....  💔",
+    // "Có người vì đau lòng mà rời đi....",
+    // "Có người sau khi người ta rời đi rồi mới cảm thấy đau lòng....  💔",
     "",
   ],
   RESPONSE_ICON: [
