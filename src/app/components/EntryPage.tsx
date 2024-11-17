@@ -4,6 +4,7 @@ import EvenlopeImage from "./EvenlopeImage";
 import LoadingPage from "./LoadingPage";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import AnimatedAstronaut from './AnimatedAstronaut';
 
 export default function EntryPage() {
   const router = useRouter();
@@ -37,6 +38,7 @@ export default function EntryPage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen" style={{backgroundColor: '#fff5f7'}}>
+      <AnimatedAstronaut />
       {isLoading ? (
         <LoadingPage loadingProgress={loadingProgress} />
       ) : (
