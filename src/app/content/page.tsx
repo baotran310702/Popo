@@ -11,6 +11,31 @@ export default function Content() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [hasNewMessage, setHasNewMessage] = useState(false);
   const [isShaked, setIsShaked] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [showToast, setShowToast] = useState(false);
+
+  const messages = [
+    "Chào em, em ăn cơm chưa",
+    "Thảo Nguyên xinh xắn đáng iuuu moa moa",
+    "Iu emmm"
+  ];
+
+  useEffect(() => {
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      setToastMessage(messages[currentIndex]);
+      setShowToast(true);
+      
+      // Hide toast after 3 seconds
+      setTimeout(() => {
+        setShowToast(false);
+      }, 3000);
+
+      currentIndex = (currentIndex + 1) % messages.length;
+    }, 4000); // Show new message every 4 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   // Set initial message notification when component mounts
   useEffect(() => {
@@ -35,6 +60,14 @@ export default function Content() {
 
   return (
     <div className="content-wrapper">
+      <div className="toast-container">
+        {showToast && (
+          <div className={`toast-message ${showToast ? 'show' : ''}`}>
+            {toastMessage}
+          </div>
+        )}
+      </div>
+
       <button 
         className={`message-button ${hasNewMessage && !isShaked ? 'message-notification' : ''}`}
         onClick={handleMessageClick}
