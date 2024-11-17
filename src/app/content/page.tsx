@@ -22,19 +22,23 @@ export default function Content() {
 
   useEffect(() => {
     let currentIndex = 0;
-    const interval = setInterval(() => {
-      setToastMessage(messages[currentIndex]);
-      setShowToast(true);
-      
-      // Hide toast after 3 seconds
-      setTimeout(() => {
-        setShowToast(false);
-      }, 3000);
 
-      currentIndex = (currentIndex + 1) % messages.length;
-    }, 4000); // Show new message every 4 seconds
+    const showNextMessage = () => {
+      if (currentIndex < messages.length) {
+        setToastMessage(messages[currentIndex]);
+        setShowToast(true);
+        
+        setTimeout(() => {
+          setShowToast(false);
+          currentIndex++;
+          if (currentIndex < messages.length) {
+            setTimeout(showNextMessage, 1000); // Wait 1s before showing next message
+          }
+        }, 3000); // Show each message for 3s
+      }
+    };
 
-    return () => clearInterval(interval);
+    showNextMessage();
   }, []);
 
   // Set initial message notification when component mounts
@@ -61,11 +65,9 @@ export default function Content() {
   return (
     <div className="content-wrapper">
       <div className="toast-container">
-        {showToast && (
-          <div className={`toast-message ${showToast ? 'show' : ''}`}>
-            {toastMessage}
-          </div>
-        )}
+        <div className={`toast-message ${showToast ? 'show' : ''}`}>
+          {toastMessage}
+        </div>
       </div>
 
       <button 
