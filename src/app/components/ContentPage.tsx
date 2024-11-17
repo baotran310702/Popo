@@ -70,9 +70,9 @@ export default function ContentPage() {
           setLikeCount(current);
         } else {
           clearInterval(interval);
-          setTimeout(animateLikes, 100); // Restart animation after 1 second
+          setTimeout(animateLikes, 10); // Restart animation after 1 second
         }
-      }, 100);
+      }, 10);
 
       return () => clearInterval(interval);
     };
